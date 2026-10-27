@@ -172,7 +172,7 @@
       .polygonCapColor(polygonCapColor)
       .polygonSideColor(polygonSideColor)
       .polygonStrokeColor(polygonStrokeColor)
-      .polygonAltitude(feature => state.selectedFeature === feature ? 0.012 : 0.002)
+      .polygonAltitude(feature => state.selectedFeature === feature ? 0.014 : 0.004)
       .polygonLabel(feature => {
         const name = feature.properties.__countryName;
         return `<div style="font-family:DM Sans,sans-serif;background:#0d1726;color:#eef4fc;border:1px solid #33445a;border-radius:8px;padding:8px 10px;font-size:12px;"><strong>${escapeHtml(name)}</strong><br><span style="color:#9fb0c6;font-size:10px;">${hasUsableData(feature) ? "Economic data available" : "No usable data for selected indicators"}</span></div>`;
