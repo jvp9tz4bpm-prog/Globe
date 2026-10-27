@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Global Economy Explorer</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://api.worldbank.org" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">◎</div>
+    <div class="brand-copy">
+      <div class="eyebrow">MACROECONOMIC DATA · MVP</div>
+      <h1>Global Economy Explorer</h1>
+    </div>
+    <div class="topbar-meta">
+      <span class="live-dot"></span>
+      <span id="data-status">Connecting to World Bank…</span>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="globe-section" aria-label="Interactive world globe">
+      <div class="globe-heading">
+        <div>
+          <p class="eyebrow">EXPLORE THE WORLD</p>
+          <h2>Select a country</h2>
+        </div>
+        <div class="globe-controls" aria-label="Globe controls">
+          <button id="zoom-out" class="icon-button" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+          <button id="zoom-in" class="icon-button" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+          <button id="reset-view" class="text-button" type="button">Reset view</button>
+        </div>
+      </div>
+
+      <div id="globe-wrap">
+        <div id="globe" role="img" aria-label="Interactive globe. Drag to rotate and use the plus and minus buttons to zoom."></div>
+        <div id="globe-loading" class="loading-overlay">
+          <div class="spinner"></div>
+          <strong>Preparing the globe</strong>
+          <span>Loading country boundaries and economic data</span>
+        </div>
+        <div class="globe-legend">
+          <span class="legend-swatch has-data"></span><span>Data available</span>
+          <span class="legend-swatch no-data"></span><span>No usable data</span>
+        </div>
+        <div class="globe-hint">Drag to rotate · Scroll or use + / − to zoom</div>
+      </div>
+      <div class="source-note">
+        <span class="source-dot"></span>
+        <span>Country indicators from the World Bank · Latest available observations</span>
+      </div>
+    </section>
+
+    <aside class="country-panel" aria-label="Selected country information">
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">⌖</div>
+        <p class="eyebrow">COUNTRY PROFILE</p>
+        <h2>Explore an economy</h2>
+        <p>Select any country on the globe to see its latest available macroeconomic indicators.</p>
+        <div class="empty-tip"><span>↖</span> Start by clicking a country</div>
+      </div>
+
+      <div id="country-content" class="country-content hidden">
+        <div class="country-header">
+          <div class="country-heading-copy">
+            <p class="eyebrow">COUNTRY PROFILE</p>
+            <h2 id="country-name">Country</h2>
+            <p id="country-code" class="country-code"></p>
+          </div>
+          <button id="clear-selection" class="close-button" type="button" aria-label="Clear selection" title="Clear selection">×</button>
+        </div>
+
+        <div id="country-data-state" class="data-state"></div>
+        <div class="metrics-grid">
+          <article class="metric-card metric-card-wide">
+            <div class="metric-label">GDP</div>
+            <div id="metric-gdp" class="metric-value">—</div>
+            <div id="year-gdp" class="metric-year">Latest available</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">GDP PER CAPITA</div>
+            <div id="metric-gdppc" class="metric-value">—</div>
+            <div id="year-gdppc" class="metric-year">Latest available</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">GDP GROWTH</div>
+            <div id="metric-growth" class="metric-value">—</div>
+            <div id="year-growth" class="metric-year">Latest available</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">INFLATION</div>
+            <div id="metric-inflation" class="metric-value">—</div>
+            <div id="year-inflation" class="metric-year">Latest available</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">POPULATION</div>
+            <div id="metric-population" class="metric-value">—</div>
+            <div id="year-population" class="metric-year">Latest available</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">UNEMPLOYMENT</div>
+            <div id="metric-unemployment" class="metric-value">—</div>
+            <div id="year-unemployment" class="metric-year">Latest available</div>
+          </article>
+        </div>
+
+        <div class="panel-footer">
+          <div class="footer-title">ABOUT THESE FIGURES</div>
+          <p>Each statistic shows its own latest available observation. Years can differ between indicators. Missing values are shown as unavailable, not zero.</p>
+          <a href="https://data.worldbank.org/" target="_blank" rel="noopener noreferrer">Explore World Bank data ↗</a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <span>GLOBAL ECONOMY EXPLORER</span>
+    <span>Educational project · Data may be revised by the source</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.3/dist/globe.gl.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
