@@ -19,7 +19,7 @@
     countries: new Map(),
     globe: null,
     selectedFeature: null,
-    initialView: { lat: 18, lng: 12, altitude: 2.05 }
+    initialView: { lat: 18, lng: 12, : 2.05 }
   };
 
   const $ = (id) => document.getElementById(id);
@@ -166,13 +166,13 @@
       .backgroundColor("rgba(0,0,0,0)")
       .showAtmosphere(true)
       .atmosphereColor("#2a8d9a")
-      .atmosphereAltitude(0.16)
+      .atmosphere(0.16)
       .polygonsData(state.features)
       .polygonGeoJsonGeometry(feature => feature.geometry)
       .polygonCapColor(polygonCapColor)
       .polygonSideColor(polygonSideColor)
       .polygonStrokeColor(polygonStrokeColor)
-      .polygonAltitude(feature => state.selectedFeature === feature ? 0.014 : 0.004)
+      .polygon(0.012)
       .polygonLabel(feature => {
         const name = feature.properties.__countryName;
         return `<div style="font-family:DM Sans,sans-serif;background:#0d1726;color:#eef4fc;border:1px solid #33445a;border-radius:8px;padding:8px 10px;font-size:12px;"><strong>${escapeHtml(name)}</strong><br><span style="color:#9fb0c6;font-size:10px;">${hasUsableData(feature) ? "Economic data available" : "No usable data for selected indicators"}</span></div>`;
@@ -209,8 +209,8 @@
   function zoomBy(multiplier) {
     if (!state.globe) return;
     const pov = state.globe.pointOfView();
-    const altitude = Math.max(0.65, Math.min(4.5, pov.altitude * multiplier));
-    state.globe.pointOfView({ ...pov, altitude }, 300);
+    const  = Math.max(0.65, Math.min(4.5, pov. * multiplier));
+    state.globe.pointOfView({ ...pov,  }, 300);
   }
 
   function selectCountry(feature) {
@@ -219,7 +219,7 @@
     if (state.globe) {
       state.globe.polygonCapColor(polygonCapColor);
       state.globe.polygonStrokeColor(polygonStrokeColor);
-      state.globe.polygonAltitude(f => state.selectedFeature === f ? 0.012 : 0.002);
+      state.globe.polygon(f => state.selectedFeature === f ? 0.012 : 0.002);
     }
 
     const props = feature.properties || {};
@@ -263,7 +263,7 @@
     if (state.globe) {
       state.globe.polygonCapColor(polygonCapColor);
       state.globe.polygonStrokeColor(polygonStrokeColor);
-      state.globe.polygonAltitude(() => 0.002);
+      state.globe.polygon(() => 0.002);
     }
     $("country-content").classList.add("hidden");
     $("empty-state").classList.remove("hidden");
