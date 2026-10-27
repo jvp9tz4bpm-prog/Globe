@@ -154,7 +154,13 @@
 
   function initGlobe() {
     if (typeof Globe !== "function") throw new Error("Globe library did not load. Check your internet connection.");
-    const globe = Globe()( $("globe") )
+    const globe = Globe()( $("globe"), {
+  rendererConfig: {
+    antialias: true,
+    alpha: true,
+    logarithmicDepthBuffer: true
+  }
+})
       .width($("globe-wrap").clientWidth)
       .height($("globe-wrap").clientHeight)
       .backgroundColor("rgba(0,0,0,0)")
