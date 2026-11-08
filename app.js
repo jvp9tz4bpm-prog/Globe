@@ -219,7 +219,7 @@
     if (state.globe) {
       state.globe.polygonCapColor(polygonCapColor);
       state.globe.polygonStrokeColor(polygonStrokeColor);
-      state.globe.polygonAltitude(f => state.selectedFeature === f ? 0.012 : 0.002);
+      state.globe.polygonAltitude(f => state.selectedFeature === f ? 0.4 : 0.2);
     }
 
     const props = feature.properties || {};
